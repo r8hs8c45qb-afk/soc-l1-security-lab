@@ -1,23 +1,32 @@
-# 🌐 Configuración de Red e Infraestructura
+# 🌐 Configuración de Red e Infraestructura del Laboratorio SOC
 
-Este documento detalla la arquitectura de red y la conectividad del laboratorio SOC L1 para asegurar la visibilidad del tráfico y el monitoreo centralizado.
+Este documento detalla la arquitectura de red y las soluciones técnicas implementadas para garantizar la visibilidad del tráfico en un entorno virtualizado sobre Apple Silicon (M-series).
 
-## 📋 Direccionamiento IP
+## 📋 Direccionamiento IP y Roles
 Se ha establecido una red privada para la comunicación segura entre los nodos del laboratorio:
 
 | Dispositivo | Rol | Sistema Operativo | Dirección IP |
 | :--- | :--- | :--- | :--- |
 | **Kali Linux** | Atacante (Red Team) | Kali 2024.x | `192.168.64.7` |
-| **Ubuntu Server** | SIEM / Centralizador | Ubuntu 24.04 LTS | `192.168.64.4` |
-| **Parrot OS** | Análisis / Forense | Parrot Security | `192.168.64.x` |
+| **Ubuntu Server** | Colector de Logs (SOC) | Ubuntu 24.04 LTS | `192.168.64.4` |
+| **Parrot OS** | Análisis Forense | Parrot Security | `192.168.64.x` |
 
-## 🛠️ Herramientas de Monitoreo (SIEM)
-Se ha iniciado el despliegue de **Wazuh v4.7.5** en el nodo de Ubuntu Server para las siguientes funciones:
-* **IDS de Host:** Detección de intrusiones mediante agentes.
-* **Análisis de Logs:** Centralización de registros de eventos de seguridad.
-* **Monitoreo de Integridad (FIM):** Vigilancia de archivos críticos en el servidor.
+## 🛠️ Gestión de Eventos y Monitoreo
+Debido a las limitaciones de recursos hardware para ejecutar un stack completo de SIEM (Wazuh Indexer), se ha optado por una arquitectura de **Centralización de Logs nativa**:
 
-## 🔄 Pruebas de Conectividad
-Se han validado las comunicaciones mediante protocolos ICMP (ping) para garantizar que los agentes puedan reportar correctamente al servidor central.
+* **Tecnología:** Protocolo **Syslog** (Rsyslog).
+* **Configuración:** El colector (Ubuntu) ha sido configurado para escuchar tráfico en el puerto `514` (UDP/TCP).
+* **Agentes:** Los nodos de ataque y análisis reenvían sus logs críticos al colector central para su posterior auditoría.
 
-**Nota Técnica:** La instalación en Ubuntu 24.04 requiere el uso del comando `sudo bash wazuh-install.sh -a -i` para omitir la comprobación estricta de versión del sistema operativo.
+## 🧠 Resolución de Conflictos (Troubleshooting)
+
+### 1. Incompatibilidad de Arquitectura (ARM64)
+Durante el despliegue de herramientas automatizadas, se detectó un error de validación de arquitectura (`aarch64` vs `x86_64`).
+* **Solución:** Se realizó una instalación manual mediante repositorios APT y el uso de banderas de ignorado (`-i`) para forzar la compatibilidad con el chip Apple Silicon.
+
+### 2. Optimización de Memoria RAM
+El servicio `wazuh-indexer` reportó fallos de inicio (`exit-code`) debido a la alta demanda de recursos (Java Virtual Machine).
+* **Decisión Técnica:** Se pivotó hacia una solución basada en **Rsyslog**, priorizando la estabilidad del sistema y demostrando flexibilidad en la arquitectura de seguridad según los recursos disponibles.
+
+---
+*Última actualización: 21 de enero de 2026*
