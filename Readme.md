@@ -1,46 +1,23 @@
-# SOC L1 Security Lab
+# 🛡️ Laboratorio de Seguridad SOC L1
 
-Laboratorio personal de ciberseguridad orientado a un entorno **SOC Nivel 1**, diseñado para simular una infraestructura real de empresa.
+Laboratorio personal de ciberseguridad diseñado para simular una infraestructura empresarial mediante virtualización en Apple Silicon (M-Series).
 
-## 🎯 Objetivo
-Diseñar, implementar y documentar un entorno de seguridad defensiva (Blue Team) con capacidades de:
-- Monitorización
-- Detección
-- Análisis
-- Respuesta a incidentes
+## 🚀 Objetivo
+Diseñar y documentar un entorno defensivo (Blue Team) capaz de centralizar eventos de seguridad para su análisis.
 
-Todo el laboratorio se realiza en **entornos controlados** y **con consentimiento explícito**.
+## 🏗️ Arquitectura del Laboratorio
+El entorno consta de tres nodos principales comunicados en una red privada:
 
-## 🧱 Arquitectura del laboratorio
-- **Ubuntu Server** – Servidor central / servicios
-- **Parrot OS Security** – Blue Team / análisis defensivo
-- **Kali Linux** – Red Team / simulación de ataques
-- Segmentación de red y pruebas de conectividad entre hosts
-- Preparación para integración de SIEM
+1. **Kali Linux**: Herramientas de ataque y generación de tráfico.
+2. **Parrot Security**: Nodo de análisis y forense.
+3. **Ubuntu Server**: Servidor central de logs (Syslog Collector).
 
-## 🔐 Alcance y ética
-Este laboratorio se utiliza únicamente con fines:
-- Educativos
-- Profesionales
-- Éticos
+## 📊 Hitos Técnicos Logrados
+* **Virtualización ARM64**: Despliegue exitoso en UTM sobre arquitectura Apple Silicon.
+* **Troubleshooting de SIEM**: Resolución de conflictos de arquitectura y memoria RAM al intentar desplegar Wazuh.
+* **Centralización de Logs**: Implementación de un colector Rsyslog en puerto 514 para recibir eventos de los nodos atacantes.
 
-No se realizan pruebas sobre sistemas sin autorización.
 
-## 📂 Contenido del repositorio
-- `docs/` → documentación técnica
-- `diagrams/` → esquemas de red y arquitectura
-- `scripts/` → scripts de automatización y pruebas
-- `configs/` → configuraciones de servicios
-- `reports/` → informes de análisis y pruebas
-
-## 🚀 Estado del proyecto
-🟢 **Fase 1 completada**  
-- Máquinas virtuales operativas  
-- Conectividad validada (ping entre hosts)  
-
-🟡 **Siguiente fase**  
-- Integración de SIEM  
-- Centralización de logs  
-- Casos de uso SOC
 
 ---
+*Este proyecto demuestra habilidades en Linux, Networking, Gestión de Logs y Resolución de problemas técnicos.*
