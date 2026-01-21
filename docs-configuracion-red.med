@@ -1,11 +1,8 @@
 # Configuración de Red del Laboratorio
-
 En esta sección se detalla la conectividad entre las máquinas del laboratorio SOC L1.
-
 ## Direccionamiento IP
 * **Kali Linux (Red Team):** 192.168.64.7
 * **Ubuntu Server (Víctima/SIEM):** 192.168.64.4
 * **Parrot OS (Análisis):** 192.168.64.x
-
 ## Pruebas de Conectividad
 Se han realizado pruebas de `ping` exitosas entre todos los nodos para asegurar que el tráfico puede ser monitorizado.
