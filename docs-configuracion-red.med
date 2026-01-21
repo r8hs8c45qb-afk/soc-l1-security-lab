@@ -1,8 +1,23 @@
-# Configuración de Red del Laboratorio
-En esta sección se detalla la conectividad entre las máquinas del laboratorio SOC L1.
-## Direccionamiento IP
-* **Kali Linux (Red Team):** 192.168.64.7
-* **Ubuntu Server (Víctima/SIEM):** 192.168.64.4
-* **Parrot OS (Análisis):** 192.168.64.x
-## Pruebas de Conectividad
-Se han realizado pruebas de `ping` exitosas entre todos los nodos para asegurar que el tráfico puede ser monitorizado.
+# 🌐 Configuración de Red e Infraestructura
+
+Este documento detalla la arquitectura de red y la conectividad del laboratorio SOC L1 para asegurar la visibilidad del tráfico y el monitoreo centralizado.
+
+## 📋 Direccionamiento IP
+Se ha establecido una red privada para la comunicación segura entre los nodos del laboratorio:
+
+| Dispositivo | Rol | Sistema Operativo | Dirección IP |
+| :--- | :--- | :--- | :--- |
+| **Kali Linux** | Atacante (Red Team) | Kali 2024.x | `192.168.64.7` |
+| **Ubuntu Server** | SIEM / Centralizador | Ubuntu 24.04 LTS | `192.168.64.4` |
+| **Parrot OS** | Análisis / Forense | Parrot Security | `192.168.64.x` |
+
+## 🛠️ Herramientas de Monitoreo (SIEM)
+Se ha iniciado el despliegue de **Wazuh v4.7.5** en el nodo de Ubuntu Server para las siguientes funciones:
+* **IDS de Host:** Detección de intrusiones mediante agentes.
+* **Análisis de Logs:** Centralización de registros de eventos de seguridad.
+* **Monitoreo de Integridad (FIM):** Vigilancia de archivos críticos en el servidor.
+
+## 🔄 Pruebas de Conectividad
+Se han validado las comunicaciones mediante protocolos ICMP (ping) para garantizar que los agentes puedan reportar correctamente al servidor central.
+
+**Nota Técnica:** La instalación en Ubuntu 24.04 requiere el uso del comando `sudo bash wazuh-install.sh -a -i` para omitir la comprobación estricta de versión del sistema operativo.
