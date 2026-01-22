@@ -34,3 +34,37 @@ Durante el despliegue se identificaron y resolvieron los siguientes incidentes c
 
 ---
 *Este proyecto demuestra habilidades en Linux, Networking, Gestión de Logs y Resolución de problemas técnicos.*
+
+🛡️ Laboratorio de Redes Seguras: pfSense Firewall & Suricata IDS
+Este proyecto documenta el despliegue de una infraestructura de red segura utilizando pfSense como firewall perimetral y Suricata como sistema de detección de intrusos (IDS). El objetivo es crear un entorno controlado (Sandbox) para la monitorización y análisis de amenazas en tiempo real.
+🚀 Hitos Técnicos Alcanzados
+1. Configuración de Red y Firewall (pfSense)
+• Segmentación LAN/WAN: Configuración de interfaces para aislar la red interna (LAN) del tráfico externo (WAN).
+• Asignación Estática: Implementación de la interfaz LAN con direccionamiento IPv4 estático (192.168.1.1/24).
+• Servicios de Red: Configuración de Gateway y reglas de filtrado para permitir la salida controlada a Internet desde la red interna.
+2. Implementación de IDS (Suricata)
+• Instalación y Despliegue: Configuración del motor Suricata específicamente sobre la interfaz LAN (em1) para monitorizar el tráfico de los clientes.
+• Gestión de Firmas: Activación de reglas de Emerging Threats (como emerging-scan y emerging-malware) para detectar intentos de reconocimiento y actividad maliciosa.
+• Seguridad Activa: Configuración del sensor en modo de ejecución continua (Estado: Running) con políticas de registro de logs de alertas habilitadas.
+Validación y Prueba de Concepto (Ubuntu)
+Cliente Interno: Despliegue de una máquina Ubuntu Desktop dentro de la red LAN protegida.
+Auditoría de Tráfico: Ejecución de pruebas de detección mediante firmas conocidas utilizando el comando:
+    curl http://testmyids.com
+Estructura de Evidencias (Capturas)
+Para documentar este proyecto, se han generado las siguientes evidencias:
+1. Configuracion_Interfaz_LAN.png: Muestra la asignación de la IP 192.168.1.1 en pfSense.
+2. Suricata_Status_Running_LAN.png: Captura del servicio Suricata activo con el check verde en la interfaz LAN.
+3. Logging_Configuration_IDS.png: Ajustes de "Send Alerts to System Log" para la recolección de eventos.
+4. Prueba_Conectividad_Ubuntu.png: Terminal de Ubuntu ejecutando el tráfico de prueba de intrusión.
+5. Validacion_Logs_Suricata.png: Vista de Logs View confirmando que el archivo de alertas se carga y procesa correctamente.
+🛠️ Tecnologías Utilizadas
+• pfSense Community Edition (Firewall/Router)
+• Suricata (IDS/IPS Engine)
+• Ubuntu Desktop (Client Endpoint)
+• Virtualización (Entorno Sandbox seguro)
+👨‍💻 Conclusión Técnica
+Este laboratorio demuestra la capacidad para diseñar una arquitectura de red robusta, gestionar reglas de firewall y desplegar herramientas de monitorización de seguridad de nivel empresarial. La integración de Suricata permite pasar de una seguridad pasiva a una defensa proactiva, siendo capaz de identificar patrones de ataque antes de que afecten a los activos finales.
+
+
+
+
